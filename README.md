@@ -37,6 +37,7 @@ One of the most useful gcode routines in the repository is 'probe\_xy\_cal\_y\_p
 This program is used to calibrate the touch probe in the xy plane by probing a surface on the plus
 y side.  To before starting this routine the user must jog the machine so that it is within
 20mm of the surface to probe.  Run the program.  It will probe the surface then pause. During each pause
-rotate the probe 90 degrees.  After the program has completed global parameters #<_probe_dx> and 
+rotate the probe 90 degrees.  When it's done be sure to rotate the probe back to 0 degrees.
+After the program has completed global parameters #<_probe_dx> and 
 #<_probe_dy> will be defined and can be used by other probing routines.
 
