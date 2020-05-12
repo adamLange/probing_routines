@@ -1,0 +1,35 @@
+G91 G21 G94 G54
+
+G91 G0 X4 Y4
+G91 G38.2 Z-20 F100
+G91 G0 Z1
+#<z_surface>=#5063
+(debug,z_surface: #<z_surface>)
+G91 G0 X-4 Y-4
+
+G91 G0 Y4
+G4 P0.1
+G90 G0 Z[#<z_surface>-0.75] F100
+G91 G38.2 X4 F100
+G91 G0 X-1
+G4 P0.1
+G90 G0 Z[#<z_surface>+1]
+G91 G0 X1.5
+G4 P0.1
+G91 G0 Y-4
+G4 P0.1
+G91 G0 X4
+G4 P0.1
+G90 G0 Z[#<z_surface>-0.75]
+G91 G38.2 Y4 F100
+G91 G0 Y-1
+G4 P0.1
+G90 G0 Z[#<z_surface>+1]
+G4 P0.1
+G91 G0 Y1.5
+G4 P0.1
+G91 G0 X-4
+
+G91 G0 X#<_probe_dx> Y#<_probe_dy>  (put the spindle over the corner)
+
+M2

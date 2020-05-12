@@ -1,0 +1,34 @@
+M70
+G91 G21 G94 G54
+
+#<x_i> = #5420
+#<y_i> = #5421
+#<z_i> = #5422
+
+G90 G0 X[#<x_i>-4] Y[#<y_i>+4]
+G91 G38.2 Z-20 F100
+G91 G0 Z1
+#<z_surface>=#5063
+G90 G0 X[#<x_i>] Y[#<y_i>+4]
+G4 P0.1
+G90 G0 Z[#<z_surface>-0.75] F100
+G91 G38.2 X-4 F100
+#<x_trip>=#5061
+G90 G0 X#<x_i>
+G4 P0.1
+G90 G0 Z[#<z_surface>+1]
+G4 P0.1
+G90 G0 X[#<x_i>-4] Y[#<y_i>]
+G4 P0.1
+G90 G0 Z[#<z_surface>-0.75]
+G91 G38.2 Y4 F100
+#<y_trip> = #5062
+G90 G0 Y[#<y_i>]
+G4 P0.1
+G90 G0 Z[#<z_surface>+1]
+G4 P0.1
+
+G90 G0 X[#<_probe_dx>+#<x_trip>-0.5] Y[#<y_trip>+#<_probe_dy>+0.5]  (put the spindle over the corner)
+
+M72
+M2

@@ -1,0 +1,63 @@
+M70    (save modal state)
+
+o020 sub
+  G38.3 X#1 Y#2 Z#3 F#4
+  o030 if [#5070]
+    (msg,tripped!)
+    M2
+  o030 endif
+o020 endsub
+
+G21 G94
+
+
+#<dx> = 40
+#<dy> = 4  (y moves over to find the z-top of the part)
+
+       (It's assumed you are starting with the probe)
+       (below in the y direction the edge to probe,)
+       (and above the object's max z.)
+
+       (First the object's max z is found)
+
+#<x_i> = #5420
+#<y_i> = #5421
+#<z_i> = #5422
+
+G91 
+o020 call [0] [#<dy>] [0] [400]
+G91 G38.2 Z-20 F100
+G91 G0 Z1
+#<z_surf> = #5063
+
+G90
+o020 call [#<x_i>] [#<y_i>] [#<z_surf>+1] [400]
+o020 call [#<x_i>] [#<y_i>] [#<z_surf>-0.75] [400]
+G91 G38.2 Y10 F100
+G90 G01 X#<x_i> Y#<y_i> Z[#<z_surf>-0.75] F400
+#<y_0> = #5062
+
+G90
+o020 call [#<x_i>] [#<y_i>] [#<z_surf>+1] [400]
+
+G90
+o020 call [#<x_i>+#<dx>] [#<y_i>] [#<z_surf>+1] [400]
+o020 call [#<x_i>+#<dx>] [#<y_i>] [#<z_surf>-0.75] [400]
+G91 G38.2 Y10 F100
+G90 G01 X[#<x_i>+#<dx>] Y[#<y_i>] Z[#<z_surf>-0.75] F400
+#<y_1> = #5062
+
+G90 
+o020 call [#<x_i>+#<dx>] [#<y_i>] [#<z_surf>+10] [400]
+G90 G0 X#<x_i> Y#<y_i>
+
+#<dy> = [#<y_1>-#<y_0>]
+#<angle> = [ATAN [#<dy>]/[#<dx>]]
+(debug,angle of part: #<angle>)
+M0
+
+G91 G01 B[-#<angle>] F10
+
+
+M72    (restore modal state)
+M2

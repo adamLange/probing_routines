@@ -1,0 +1,21 @@
+G54 G94 G21 G91
+
+#<param_i>=4900
+
+o100 repeat [4]
+M0
+G38.2 Y-20 F100
+G0 Y1
+##<param_i>=#5062
+#<param_i>=[#<param_i>+1]
+o100 endrepeat
+
+#<dy> = [[#4902-#4900]/2]
+#<dx> = [[#4903-#4901]/2]
+(debug, dx:#<dx>, dy:#<dy>)
+
+#<_probe_dx>=#<dx>
+#<_probe_dy>=#<dy>
+
+G4 P0.5
+M2

@@ -1,0 +1,31 @@
+G21
+(PROBEOPEN /home/pocketnc/probefiles/bla.txt)
+
+G90 G0 X10
+
+G91 G38.2 Z-20 F100
+G91 G0 Z10
+#<x_0> = #5061
+#<z_0> = #5063
+
+G90 G0 X-10
+
+G91 G38.2 Z-20 F100
+G91 G0 Z10
+#<x_1> = #5061
+#<z_1> = #5063
+
+
+#<dx> = [#<x_0> - #<x_1>]
+#<dz> = [#<z_0> - #<z_1>]
+
+#<angle> = [ATAN [#<dz>] / [#<dx>] ]
+
+(DEBUG, angle of part: #<angle>)
+M0
+
+G91 G0 B[#<angle>]
+
+(PROBECLOSE)
+
+M2

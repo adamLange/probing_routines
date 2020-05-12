@@ -1,0 +1,30 @@
+(use with caution this is just a quick dirty program)
+G21 
+
+(find z)
+G91 G38.2 Z-20 F100
+G91 G0 Z5
+#<z_surf> = #5063
+
+G90 G0 X25
+#<fmt> = [#<z_surf>-2]
+(debug, going to z = #<fmt>)
+G90 G01 Z[#<z_surf>-2] F100
+G91 G38.2 X-20 F100
+G91 G0 X2
+G90 G0 Z[#<z_surf>+5]
+#<x0> = #5061
+
+G90 G0 X-25
+G90 G01 Z[#<z_surf>-2] F100
+G91 G38.2 X20 F100
+G91 G0 X-2
+G90 G0 Z[#<z_surf>+5]
+#<x1> = #5061
+
+#<center> = [[#<x0>+#<x1>]/2+#<dx>]
+(DEBUG, center: x #<center>)
+M0
+G90 G0 X[#<center>]
+
+M2

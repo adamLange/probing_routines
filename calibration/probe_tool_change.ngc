@@ -1,0 +1,16 @@
+M70 (save modal state)
+
+G90 G21 G94
+
+
+G90 G53 G0 Z0
+(msg,insert probe body)
+M6 T1 G43 H1
+
+#<tool_offset_mm>=[#5403*25.4]
+
+G10 L1 P1 Z[#<tool_offset_mm>+#<_probe_dz>]
+G43 H1
+
+M72 (restore modal state)
+M2
